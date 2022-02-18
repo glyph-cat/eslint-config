@@ -1,0 +1,6 @@
+{
+  "name": "@glyph-cat/eslint-config",
+  "version": "1.0.0-alpha.0",
+  "main": "index.js",
+  "license": "MIT"
+}
