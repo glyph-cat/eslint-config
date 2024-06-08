@@ -3,5 +3,10 @@ set -e
 # Cleanup old artifacts
 rm -rf ./lib ./temp/tsc
 
-# Actual build process
-yarn bundle && yarn types && yarn insert-missing-imports && yarn api
+# Generate bundle
+rollup -c ./config/rollup.config.js
+
+# Generate type definitions
+yarn tsc --declaration
+api-extractor run -c ./config/api-extractor.base.json --local --verbose
+api-extractor run -c ./config/api-extractor.react.json --local --verbose

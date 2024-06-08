@@ -5,12 +5,11 @@ import { RollupOptions } from 'rollup'
 import typescript from 'rollup-plugin-typescript2'
 import json from '@rollup/plugin-json'
 
-const config: Array<RollupOptions> = [
-  {
-    // CommonJS
-    input: 'src/index.ts',
+function getConfig(inputPath: string, outputPath: string): RollupOptions {
+  return {
+    input: inputPath,
     output: {
-      file: 'lib/index.js',
+      file: outputPath,
       format: 'cjs',
       exports: 'named',
       sourcemap: false,
@@ -44,9 +43,14 @@ const config: Array<RollupOptions> = [
         },
       }),
       commonjs(),
-      terser()
+      terser(),
     ],
-  },
+  }
+}
+
+const config: Array<RollupOptions> = [
+  getConfig('./src/bundle-entry-point/base.ts', './base/lib/index.js'),
+  getConfig('./src/bundle-entry-point/react.ts', './react/lib/index.js'),
 ]
 
 export default config
