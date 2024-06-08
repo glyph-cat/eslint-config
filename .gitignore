@@ -10,8 +10,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Builds
 *.tgz
 dist/
-base/lib/
-react/lib/
+lib/
 
 # Dependency directories
 node_modules

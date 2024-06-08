@@ -1,10 +1,10 @@
 import { Severity } from '../abstractions/public'
-import { createBaseConfig } from '../presets/base'
+import { createJestConfig } from '../presets/jest'
 
 /**
  * @public
  */
-export const recommended = createBaseConfig({
+export const recommended = createJestConfig({
   remapOff: Severity.OFF,
   remapWarn: Severity.WARN,
   remapError: Severity.ERROR,
@@ -15,7 +15,7 @@ export default recommended
 /**
  * @public
  */
-export const libraryAuthoring = createBaseConfig({
+export const libraryAuthoring = createJestConfig({
   remapOff: Severity.OFF,
   remapWarn: Severity.ERROR,
   remapError: Severity.ERROR,

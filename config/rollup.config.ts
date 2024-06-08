@@ -22,6 +22,7 @@ function getConfig(inputPath: string, outputPath: string): RollupOptions {
       '@typescript-eslint/parser',
       'eslint',
       'eslint-plugin-import',
+      'eslint-plugin-jest',
       'eslint-plugin-react',
       'eslint-plugin-react-hooks',
       'globals',
@@ -50,7 +51,9 @@ function getConfig(inputPath: string, outputPath: string): RollupOptions {
 }
 
 const config: Array<RollupOptions> = [
+  getConfig('./src/index.ts', './lib/index.js'),
   getConfig('./src/bundle-entry-point/base.ts', './base/lib/index.js'),
+  getConfig('./src/bundle-entry-point/jest.ts', './jest/lib/index.js'),
   getConfig('./src/bundle-entry-point/react.ts', './react/lib/index.js'),
 ]
 

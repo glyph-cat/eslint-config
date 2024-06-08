@@ -4,7 +4,6 @@
         "csstype",
         "endregion",
         "linebreak",
-        "TOFIX",
-        "tseslint"
+        "TOFIX"
     ]
 }

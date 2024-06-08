@@ -6,7 +6,7 @@ import tsParser from '@typescript-eslint/parser'
 import type { Linter } from 'eslint'
 import importPlugin from 'eslint-plugin-import'
 import globals from 'globals'
-import tseslint from 'typescript-eslint'
+import tsEslint from 'typescript-eslint'
 import { Severity } from '../abstractions/public'
 import { COMMON_FILE_EXTENSIONS } from '../constants/internal'
 
@@ -21,9 +21,11 @@ export function createBaseConfig({
   remapError,
 }: BaseConfigParams): Array<Linter.FlatConfig> {
   return [
-    js.configs.recommended,
-    // compat.extends('plugin:@typescript-eslint/recommended')[0],
-    ...tseslint.configs.recommended,
+    {
+      name: '@eslint/js',
+      ...js.configs.recommended,
+    },
+    ...tsEslint.configs.recommended,
     {
       name: '@glyph-cat/eslint-config (base)',
       languageOptions: {
@@ -49,6 +51,7 @@ export function createBaseConfig({
         '@stylistic': stylistic,
         '@typescript-eslint': typescriptPlugin,
         'import': fixupPluginRules(importPlugin),
+        // Ref: https://eslint.org/blog/2024/05/eslint-compatibility-utilities
       },
       rules: {
 
@@ -191,7 +194,7 @@ export function createBaseConfig({
       },
     },
     {
-      name: '@glyph-cat/eslint-config (base: ts-only)',
+      name: '@glyph-cat/eslint-config (ts-only)',
       files: [
         '**/*.ts',
         '**/*.tsx',
@@ -205,6 +208,8 @@ export function createBaseConfig({
       },
     },
     {
+      // Potentially useful reference:
+      // https://github.com/valor-software/eslint-config-valorsoft#how-to-use
       name: '@glyph-cat/eslint-config (ignore list)',
       ignores: [
         '**/*.draft*',
@@ -216,15 +221,4 @@ export function createBaseConfig({
       ],
     },
   ]
-}
-
-/**
- * @public
- */
-export const ALT_IMPORT_RESOLVER_SETTINGS = {
-  'import/resolver': {
-    node: {
-      extensions: COMMON_FILE_EXTENSIONS,
-    },
-  },
 }

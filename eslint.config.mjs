@@ -1,5 +1,5 @@
-// import { recommended as baseRecommended } from './src/bundle-entry-point/base'
-import { recommended as baseRecommended } from './react/lib/index.js'
+import { recommended as baseRecommended } from './src/bundle-entry-point/base'
+// import { recommended as baseRecommended } from './react/lib/index.js'
 
 export default [
   ...baseRecommended,
