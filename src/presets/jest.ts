@@ -15,7 +15,7 @@ export function createJestConfig({
   return [
     {
       name: 'eslint-plugin-jest',
-      ...jestPlugin.configs.recommended,
+      ...jestPlugin.configs['flat/recommended'],
       settings: {
         version: jestPackage.version,
       },
