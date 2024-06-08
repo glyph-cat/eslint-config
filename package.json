@@ -1,6 +1,65 @@
 {
   "name": "@glyph-cat/eslint-config",
-  "version": "1.0.0-alpha.0",
-  "main": "index.js",
-  "license": "MIT"
+  "version": "1.0.1-alpha.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "inspect": "yarn eslint-config-inspector",
+    "bundle": "rollup -c ./config/rollup.config.js",
+    "types": "yarn tsc --declaration",
+    "insert-missing-imports": "yarn ts-node ./scripts/run/insert-missing-imports",
+    "api": "api-extractor run -c ./config/api-extractor.json --local --verbose",
+    "build": "sh ./scripts/run/build.sh"
+  },
+  "author": "glyph-cat",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/glyph-cat/eslint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/glyph-cat/eslint-config/issues"
+  },
+  "devDependencies": {
+    "@eslint/config-inspector": "^0.4.8",
+    "@microsoft/api-extractor": "^7.43.5",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@stylistic/eslint-plugin": "^2.1.0",
+    "@types/node": "^20.12.12",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.12.0",
+    "eslint": "^9.2.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "rollup": "^4.17.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": ">=7",
+    "@typescript-eslint/parser": ">=7",
+    "eslint": ">=9",
+    "eslint-import-resolver-typescript": ">=3",
+    "eslint-plugin-import": ">=2",
+    "eslint-plugin-react": ">=7",
+    "eslint-plugin-react-hooks": ">=4"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-react": {
+      "optional": true
+    },
+    "eslint-plugin-react-hooks": {
+      "optional": true
+    }
+  }
 }
