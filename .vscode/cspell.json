@@ -1,8 +1,10 @@
 {
     "words": [
+        "compat",
         "csstype",
         "endregion",
         "linebreak",
-        "TOFIX"
+        "TOFIX",
+        "tseslint"
     ]
 }

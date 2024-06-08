@@ -19,8 +19,18 @@ export function createReactConfig({
   isLibraryAuthoring,
 }: ReactConfigParams): Array<Linter.FlatConfig> {
   return [
-    compat.extends(reactPlugin.configs.recommended),
-    compat.extends(reactHooksPlugin.configs.recommended),
+    {
+      ...compat.extends('plugin:react/recommended')[0],
+      settings: {
+        // See: https://github.com/benmosher/eslint-plugin-import/issues/1485#issuecomment-571597574
+        'react': {
+          pragma: 'React',
+          fragment: 'Fragment',
+          version: 'detect',
+        },
+      },
+    },
+    compat.extends('plugin:react-hooks/recommended')[0],
     {
       name: '@glyph-cat/eslint-config (react)',
       plugins: {
@@ -45,14 +55,6 @@ export function createReactConfig({
         'react-hooks/exhaustive-deps': [remapWarn, {
           additionalHooks: 'useInsertionEffect'
         }]
-      },
-      settings: {
-        // See: https://github.com/benmosher/eslint-plugin-import/issues/1485#issuecomment-571597574
-        'react': {
-          pragma: 'React',
-          fragment: 'Fragment',
-          version: 'detect',
-        },
       },
     }
   ]

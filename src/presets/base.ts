@@ -1,3 +1,4 @@
+import { fixupPluginRules } from '@eslint/compat'
 import js from '@eslint/js'
 import stylistic from '@stylistic/eslint-plugin'
 import typescriptPlugin from '@typescript-eslint/eslint-plugin'
@@ -5,9 +6,9 @@ import tsParser from '@typescript-eslint/parser'
 import type { Linter } from 'eslint'
 import importPlugin from 'eslint-plugin-import'
 import globals from 'globals'
+import tseslint from 'typescript-eslint'
 import { Severity } from '../abstractions/public'
 import { COMMON_FILE_EXTENSIONS } from '../constants/internal'
-import { compat } from '../utils/compat'
 
 export interface BaseConfigParams {
   remapOff: Severity,
@@ -21,7 +22,8 @@ export function createBaseConfig({
 }: BaseConfigParams): Array<Linter.FlatConfig> {
   return [
     js.configs.recommended,
-    ...compat.extends(typescriptPlugin.configs.recommended),
+    // compat.extends('plugin:@typescript-eslint/recommended')[0],
+    ...tseslint.configs.recommended,
     {
       name: '@glyph-cat/eslint-config (base)',
       languageOptions: {
@@ -46,18 +48,21 @@ export function createBaseConfig({
       plugins: {
         '@stylistic': stylistic,
         '@typescript-eslint': typescriptPlugin,
-        'import': importPlugin,
+        'import': fixupPluginRules(importPlugin),
       },
       rules: {
 
         // #region Category A: Code Health
 
         // Problems that fall under this category may produce nasty bugs.
-        '@typescript-eslint/explicit-module-boundary-types': Severity.OFF, // See `overrides`
+        '@typescript-eslint/explicit-module-boundary-types': Severity.OFF, // We don't want this for JS files
         '@typescript-eslint/no-shadow': remapError,
         'eqeqeq': [remapError, 'always'],
         'import/no-cycle': remapError,
-        'import/no-deprecated': remapError,
+
+        'import/no-deprecated': Severity.OFF, // remapError,
+        // TOFIX: Parse errors in imported module '{package-name}': parserPath or languageOptions.parser is required! (undefined:undefined)
+
         'import/no-unresolved': [remapError, {
           ignore: [
             'csstype',
@@ -83,7 +88,7 @@ export function createBaseConfig({
         '@typescript-eslint/no-unused-vars': [remapWarn, {
           ignoreRestSiblings: true,
         }],
-        '@typescript-eslint/no-var-requires': Severity.OFF, // See `overrides`
+        '@typescript-eslint/no-var-requires': Severity.OFF, // We don't want this for JS files
         // 'import/no-unused-modules': [remapWarn, { unusedExports: true }],
         // Some dynamically imported or required files are not recognized as being
         // use and will trigger false positive
@@ -108,7 +113,7 @@ export function createBaseConfig({
         // look inconsistent and hard to read.
         '@stylistic/eol-last': [remapWarn, 'always'],
         '@stylistic/no-extra-semi': remapWarn,
-        'import/newline-after-import': remapWarn,
+        // 'import/newline-after-import': remapWarn,
         '@stylistic/indent': [remapWarn, 2, { SwitchCase: 1 }],
         '@stylistic/lines-between-class-members': [remapWarn, 'always', {
           exceptAfterSingleLine: true,
@@ -184,14 +189,6 @@ export function createBaseConfig({
           typescript: {},
         },
       },
-      ignores: [
-        '**/*.draft*',
-        '**/*.old*',
-        '**/dist/',
-        '**/lib/',
-        '**/temp/',
-        '**/build/',
-      ],
     },
     {
       name: '@glyph-cat/eslint-config (base: ts-only)',
@@ -206,6 +203,17 @@ export function createBaseConfig({
         '@typescript-eslint/explicit-module-boundary-types': Severity.WARN,
         '@typescript-eslint/no-var-requires': Severity.WARN,
       },
+    },
+    {
+      name: '@glyph-cat/eslint-config (ignore list)',
+      ignores: [
+        '**/*.draft*',
+        '**/*.old*',
+        '**/dist/',
+        '**/lib/',
+        '**/temp/',
+        '**/build/',
+      ],
     },
   ]
 }
