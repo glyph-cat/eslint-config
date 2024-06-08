@@ -6,8 +6,8 @@ import { compat } from '../utils/compat'
 import { emphasize } from '../utils/emphasize'
 
 export interface ReactConfigParams {
-  remapOff: Severity,
-  remapWarn: Severity,
+  remapOff: Severity
+  remapWarn: Severity
   remapError: Severity
   isLibraryAuthoring?: boolean
 }
@@ -20,6 +20,7 @@ export function createReactConfig({
 }: ReactConfigParams): Array<Linter.FlatConfig> {
   return [
     {
+      name: 'eslint-plugin-react',
       ...compat.extends('plugin:react/recommended')[0],
       settings: {
         // See: https://github.com/benmosher/eslint-plugin-import/issues/1485#issuecomment-571597574
@@ -30,7 +31,10 @@ export function createReactConfig({
         },
       },
     },
-    compat.extends('plugin:react-hooks/recommended')[0],
+    {
+      name: 'eslint-plugin-react-hooks',
+      ...compat.extends('plugin:react-hooks/recommended')[0],
+    },
     {
       name: '@glyph-cat/eslint-config (react)',
       plugins: {

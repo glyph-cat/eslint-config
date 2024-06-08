@@ -1,10 +1,11 @@
 import type { Linter } from 'eslint'
 import jestPlugin from 'eslint-plugin-jest'
+import jestPackage from 'jest/package.json' assert { type: 'json' }
 import { Severity } from '../abstractions/public'
 
 export interface JestConfigParams {
-  remapOff: Severity,
-  remapWarn: Severity,
+  remapOff: Severity
+  remapWarn: Severity
   remapError: Severity
 }
 
@@ -13,12 +14,14 @@ export function createJestConfig({
 }: JestConfigParams): Array<Linter.FlatConfig> {
   return [
     {
+      name: 'eslint-plugin-jest',
       ...jestPlugin.configs.recommended,
       settings: {
-        version: require('jest/package.json').version,
+        version: jestPackage.version,
       },
     },
     {
+      name: '@glyph-cat/eslint-config (jest)',
       plugins: {
         'jest': jestPlugin,
       },

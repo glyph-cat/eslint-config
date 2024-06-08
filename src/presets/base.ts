@@ -11,8 +11,8 @@ import { Severity } from '../abstractions/public'
 import { COMMON_FILE_EXTENSIONS } from '../constants/internal'
 
 export interface BaseConfigParams {
-  remapOff: Severity,
-  remapWarn: Severity,
+  remapOff: Severity
+  remapWarn: Severity
   remapError: Severity
 }
 
