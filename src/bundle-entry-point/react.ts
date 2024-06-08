@@ -4,7 +4,7 @@ import { createReactConfig } from '../presets/react'
 /**
  * @public
  */
-export const ReactRecommended = createReactConfig({
+export const recommended = createReactConfig({
   remapOff: Severity.OFF,
   remapWarn: Severity.WARN,
   remapError: Severity.ERROR,
@@ -13,7 +13,7 @@ export const ReactRecommended = createReactConfig({
 /**
  * @public
  */
-export const ReactLibraryAuthoring = createReactConfig({
+export const libraryAuthoring = createReactConfig({
   remapOff: Severity.OFF,
   remapWarn: Severity.ERROR,
   remapError: Severity.ERROR,

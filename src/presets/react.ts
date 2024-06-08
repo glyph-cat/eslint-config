@@ -1,7 +1,8 @@
-import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
+import type { Linter } from 'eslint'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import { Severity } from '../abstractions/public'
+import { compat } from '../utils/compat'
 import { emphasize } from '../utils/emphasize'
 
 export interface ReactConfigParams {
@@ -16,10 +17,10 @@ export function createReactConfig({
   remapWarn,
   remapError,
   isLibraryAuthoring,
-}: ReactConfigParams): FlatConfig.ConfigArray {
+}: ReactConfigParams): Array<Linter.FlatConfig> {
   return [
-    reactPlugin.configs.recommended,
-    reactHooksPlugin.configs.recommended,
+    compat.extends(reactPlugin.configs.recommended),
+    compat.extends(reactHooksPlugin.configs.recommended),
     {
       name: '@glyph-cat/eslint-config (react)',
       plugins: {

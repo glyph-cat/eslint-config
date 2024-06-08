@@ -15,7 +15,7 @@ export default recommended
 /**
  * @public
  */
-export const LibraryAuthoring = createBaseConfig({
+export const libraryAuthoring = createBaseConfig({
   remapOff: Severity.OFF,
   remapWarn: Severity.ERROR,
   remapError: Severity.ERROR,

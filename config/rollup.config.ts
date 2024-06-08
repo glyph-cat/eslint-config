@@ -16,6 +16,7 @@ function getConfig(inputPath: string, outputPath: string): RollupOptions {
     },
     external: [
       '@eslint/js',
+      '@eslint/eslintrc',
       '@stylistic/eslint-plugin',
       '@typescript-eslint/eslint-plugin',
       '@typescript-eslint/parser',

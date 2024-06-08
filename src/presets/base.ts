@@ -2,11 +2,12 @@ import js from '@eslint/js'
 import stylistic from '@stylistic/eslint-plugin'
 import typescriptPlugin from '@typescript-eslint/eslint-plugin'
 import tsParser from '@typescript-eslint/parser'
-import type { FlatConfig } from '@typescript-eslint/utils/ts-eslint'
+import type { Linter } from 'eslint'
 import importPlugin from 'eslint-plugin-import'
 import globals from 'globals'
 import { Severity } from '../abstractions/public'
 import { COMMON_FILE_EXTENSIONS } from '../constants/internal'
+import { compat } from '../utils/compat'
 
 export interface BaseConfigParams {
   remapOff: Severity,
@@ -17,10 +18,10 @@ export interface BaseConfigParams {
 export function createBaseConfig({
   remapWarn,
   remapError,
-}: BaseConfigParams): FlatConfig.ConfigArray {
+}: BaseConfigParams): Array<Linter.FlatConfig> {
   return [
     js.configs.recommended,
-    typescriptPlugin.configs.recommended,
+    ...compat.extends(typescriptPlugin.configs.recommended),
     {
       name: '@glyph-cat/eslint-config (base)',
       languageOptions: {
@@ -198,6 +199,9 @@ export function createBaseConfig({
         '**/*.ts',
         '**/*.tsx',
       ],
+      plugins: {
+        '@typescript-eslint': typescriptPlugin,
+      },
       rules: {
         '@typescript-eslint/explicit-module-boundary-types': Severity.WARN,
         '@typescript-eslint/no-var-requires': Severity.WARN,
