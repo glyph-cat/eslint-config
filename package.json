@@ -7,10 +7,6 @@
   "scripts": {
     "lint": "eslint .",
     "inspect": "yarn eslint-config-inspector",
-    "bundle": "rollup -c ./config/rollup.config.js",
-    "types": "yarn tsc --declaration",
-    "insert-missing-imports": "yarn ts-node ./scripts/run/insert-missing-imports",
-    "api": "api-extractor run -c ./config/api-extractor.json --local --verbose",
     "build": "sh ./scripts/run/build.sh"
   },
   "author": "glyph-cat",

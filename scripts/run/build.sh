@@ -1,7 +1,7 @@
 set -e
 
 # Cleanup old artifacts
-rm -rf ./lib ./temp/tsc
+rm -rf ./temp/tsc ./base/lib ./react/lib
 
 # Generate bundle
 rollup -c ./config/rollup.config.js
