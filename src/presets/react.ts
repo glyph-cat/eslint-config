@@ -42,7 +42,7 @@ export function createReactConfig({
         'react-hooks': reactHooksPlugin,
       },
       rules: {
-        ...(isLibraryAuthoring ? {
+        ...(isLibraryAuthoring ? {} : {
           'no-restricted-imports': [remapError, {
             paths: [{
               name: 'react',
@@ -50,7 +50,7 @@ export function createReactConfig({
               message: 'Please import from ' + emphasize('\'@glyph-cat/swiss-army-knife\'') + ' instead.'
             }],
           }],
-        } : {}),
+        }),
         'react/display-name': remapOff,
         'react/jsx-no-bind': remapWarn,
         'react/no-children-prop': remapError,
