@@ -1,3 +1,14 @@
+## Requirements
+
+### Mandatory
+* `eslint` — `>=9`
+* `globals` — `>=14`
+
+### Optional
+* `eslint-plugin-react` — `7.34.2`
+* `eslint-plugin-react-hooks` — `4.6.2`
+* `eslint-plugin-jest` — `28.6.0`
+
 ## Installation
 
 ### Standard
@@ -39,4 +50,8 @@ module.exports = [
 
 ### Key "globals": Global "AudioWorkletGlobalScope " has leading or trailing whitespace.
 
-Solution: Run `yarn why globals` to check the version. Make sure the version of [globals](https://www.npmjs.com/package/globals) is at least v14.X.X. The package can be updated to the latest version by running `yarn upgrade globals@latest`.
+Solution: Run `yarn why globals` to check the version. Make sure the version of [globals](https://www.npmjs.com/package/globals) is at least v14.X.X. The package can be updated to the latest version by running `yarn upgrade global@latest`.
+
+### context.getAncestors is not a function ... Rule: "react/jsx-no-bind"
+
+The `eslint-plugin-react` installed might be an old version, run `yarn upgrade eslint-plugin-react@latest` and the problem should be resolved. Working version of `eslint-plugin-react` is `7.34.2` at the time of writing.
