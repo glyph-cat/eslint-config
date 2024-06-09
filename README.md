@@ -34,3 +34,9 @@ module.exports = [
 ]
 
 ```
+
+## Troubleshooting
+
+### Key "globals": Global "AudioWorkletGlobalScope " has leading or trailing whitespace.
+
+Solution: Run `yarn why globals` to check the version. Make sure the version of [globals](https://www.npmjs.com/package/globals) is at least v14.X.X. The package can be updated to the latest version by running `yarn upgrade globals@latest`.

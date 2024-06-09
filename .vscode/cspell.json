@@ -4,6 +4,7 @@
         "csstype",
         "endregion",
         "linebreak",
-        "TOFIX"
+        "TOFIX",
+        "Worklet"
     ]
 }

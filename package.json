@@ -59,7 +59,8 @@
     "eslint-plugin-import": ">=2",
     "eslint-plugin-jest": ">=28",
     "eslint-plugin-react": ">=7",
-    "eslint-plugin-react-hooks": ">=4"
+    "eslint-plugin-react-hooks": ">=4",
+    "globals": ">=14"
   },
   "peerDependenciesMeta": {
     "eslint-plugin-jest": {

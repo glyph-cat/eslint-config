@@ -213,11 +213,14 @@ export function createBaseConfig({
       name: '@glyph-cat/eslint-config (ignore list)',
       ignores: [
         '**/*.draft*',
+        '**/*.scripted*',
+        '**/*.secret*',
         '**/*.old*',
         '**/dist/',
         '**/lib/',
         '**/temp/',
         '**/build/',
+        '.next/',
       ],
     },
   ]
