@@ -1,4 +1,4 @@
-import { FlatCompat } from "@eslint/eslintrc"
+import { FlatCompat } from '@eslint/eslintrc'
 import path from 'path'
 
 // Reference: https://eslint.org/docs/latest/use/configure/migration-guide#using-eslintrc-configs-in-flat-config
