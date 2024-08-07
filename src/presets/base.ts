@@ -82,7 +82,7 @@ export function createBaseConfig({
         // Problems that fall under this category are unlikely to produce bugs on
         // their own, but will make writing code that produce bugs easier.
         '@typescript-eslint/ban-ts-comment': remapWarn,
-        '@typescript-eslint/ban-types': remapWarn,
+        // '@typescript-eslint/ban-types': remapWarn,
         '@typescript-eslint/no-empty-function': remapWarn,
         '@typescript-eslint/no-empty-interface': remapWarn,
         '@typescript-eslint/no-explicit-any': [remapWarn, {
