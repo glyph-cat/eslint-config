@@ -3,7 +3,6 @@ import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import { Severity } from '../abstractions/public'
 import { compat } from '../utils/compat'
-import { emphasize } from '../utils/emphasize'
 
 export interface ReactConfigParams {
   remapOff: Severity
@@ -42,15 +41,6 @@ export function createReactConfig({
         'react-hooks': reactHooksPlugin,
       },
       rules: {
-        ...(isLibraryAuthoring ? {} : {
-          'no-restricted-imports': [remapError, {
-            paths: [{
-              name: 'react',
-              importNames: ['useRef'],
-              message: 'Please import from ' + emphasize('\'@glyph-cat/swiss-army-knife\'') + ' instead.'
-            }],
-          }],
-        }),
         'react/display-name': remapOff,
         'react/jsx-no-bind': remapWarn,
         'react/no-children-prop': remapError,
