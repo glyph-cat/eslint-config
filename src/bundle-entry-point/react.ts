@@ -1,4 +1,4 @@
-import { Severity } from '../abstractions/public'
+import { NumericSeverity, Severity, StringSeverity } from '../abstractions/public'
 import { createReactConfig } from '../presets/react'
 
 /**
@@ -19,3 +19,28 @@ export const libraryAuthoring = createReactConfig({
   remapError: Severity.ERROR,
   isLibraryAuthoring: true,
 })
+
+/**
+ * @public
+ */
+export const EXHAUSTIVE_DEPS_DEFAULT_ADDITIONAL_HOOKS: Readonly<Array<string>> = [
+  'useInsertionEffect',
+]
+
+/**
+ * @public
+ */
+export const BuildRule = {
+  ReactHooks: {
+    ExhaustiveDeps: (
+      severity: Severity | NumericSeverity | StringSeverity,
+      additionalHooks: Array<string>,
+    ) => {
+      return {
+        'react-hooks/exhaustive-deps': [severity, {
+          additionalHooks: `(${additionalHooks.join('|')})`,
+        }],
+      }
+    },
+  },
+} as const
