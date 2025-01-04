@@ -25,6 +25,7 @@ export const libraryAuthoring = createReactConfig({
  */
 export const EXHAUSTIVE_DEPS_DEFAULT_ADDITIONAL_HOOKS: Readonly<Array<string>> = [
   'useInsertionEffect',
+  'useIsomorphicLayoutEffect',
 ]
 
 /**
